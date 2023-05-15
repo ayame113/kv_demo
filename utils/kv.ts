@@ -1,6 +1,8 @@
 import { encode } from "https://deno.land/std@0.187.0/encoding/hex.ts";
 
-export const kvPromise = Deno.openKv("./kv.sqlite");
+export const kvPromise = Deno.openKv(
+  Deno.env.get("DENO_DEPLOYMENT_ID") ? undefined : "./kv.sqlite",
+);
 
 export async function registerUser(userId: string) {
   if (typeof userId !== "string") {
