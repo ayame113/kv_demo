@@ -2,13 +2,21 @@ export interface ApiResponse {
   success: boolean;
 }
 
+export interface RegisterApiResponse extends ApiResponse {
+  userId: string | null;
+}
+
 export interface GetNameApiResponse extends ApiResponse {
-  name: string|null;
+  name: string | null;
 }
 
 export interface RegisterApiRequest {
-  userId: string;
   token: string;
+}
+
+export interface DeleteApiRequest {
+  token: string;
+  userId: string;
 }
 
 export interface SetNameApiRequest {

@@ -19,6 +19,16 @@ export async function registerUser(userId: string) {
   return transaction.ok;
 }
 
+export async function deleteUser(userId: string) {
+  if (typeof userId !== "string") {
+    return false;
+  }
+  const kv = await kvPromise;
+  const key = await sha256(userId);
+  await kv.delete(["users", key]);
+  return true;
+}
+
 export async function hasUser(userId: string) {
   if (typeof userId !== "string") {
     return false;

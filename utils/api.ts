@@ -1,16 +1,30 @@
 import {
   ApiResponse,
+  DeleteApiRequest,
   GetNameApiResponse,
   RegisterApiRequest,
+  RegisterApiResponse,
   SetNameApiRequest,
 } from "./types.d.ts";
 
-export async function register(
+export async function register(token: string): Promise<RegisterApiResponse> {
+  const body: RegisterApiRequest = { token };
+  const res = await fetch("/api/register", {
+    method: "POST",
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) {
+    return { success: false, userId: null };
+  }
+  return await res.json();
+}
+
+export async function deleteUser(
   userId: string,
   token: string,
 ): Promise<ApiResponse> {
-  const body: RegisterApiRequest = { userId, token };
-  const res = await fetch("/api/register", {
+  const body: DeleteApiRequest = { userId, token };
+  const res = await fetch("/api/delete", {
     method: "POST",
     body: JSON.stringify(body),
   });
