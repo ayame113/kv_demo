@@ -39,6 +39,7 @@ export default function Main() {
   return (
     <div>
       {isError && <div>ユーザー登録をしてください。</div>}
+      <div class="text-left text-sm">ユーザー名</div>
       <div>
         <input
           type="text"
