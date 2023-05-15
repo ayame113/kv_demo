@@ -1,1 +1,4 @@
 .env
+kv.sqlite
+kv.sqlite-shm
+kv.sqlite-wal
