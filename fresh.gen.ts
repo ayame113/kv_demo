@@ -3,19 +3,41 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 import config from "./deno.json" assert { type: "json" };
-import * as $0 from "./routes/[name].tsx";
-import * as $1 from "./routes/api/joke.ts";
-import * as $2 from "./routes/index.tsx";
-import * as $$0 from "./islands/Counter.tsx";
+import * as $0 from "./routes/api/close.ts";
+import * as $1 from "./routes/api/get_name.ts";
+import * as $2 from "./routes/api/joke.ts";
+import * as $3 from "./routes/api/open.ts";
+import * as $4 from "./routes/api/register.ts";
+import * as $5 from "./routes/api/set_name.ts";
+import * as $6 from "./routes/close.tsx";
+import * as $7 from "./routes/index.tsx";
+import * as $8 from "./routes/open.tsx";
+import * as $9 from "./routes/register.tsx";
+import * as $$0 from "./islands/Close.tsx";
+import * as $$1 from "./islands/Counter.tsx";
+import * as $$2 from "./islands/Main.tsx";
+import * as $$3 from "./islands/Open.tsx";
+import * as $$4 from "./islands/Register.tsx";
 
 const manifest = {
   routes: {
-    "./routes/[name].tsx": $0,
-    "./routes/api/joke.ts": $1,
-    "./routes/index.tsx": $2,
+    "./routes/api/close.ts": $0,
+    "./routes/api/get_name.ts": $1,
+    "./routes/api/joke.ts": $2,
+    "./routes/api/open.ts": $3,
+    "./routes/api/register.ts": $4,
+    "./routes/api/set_name.ts": $5,
+    "./routes/close.tsx": $6,
+    "./routes/index.tsx": $7,
+    "./routes/open.tsx": $8,
+    "./routes/register.tsx": $9,
   },
   islands: {
-    "./islands/Counter.tsx": $$0,
+    "./islands/Close.tsx": $$0,
+    "./islands/Counter.tsx": $$1,
+    "./islands/Main.tsx": $$2,
+    "./islands/Open.tsx": $$3,
+    "./islands/Register.tsx": $$4,
   },
   baseUrl: import.meta.url,
   config,
