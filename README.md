@@ -6,7 +6,7 @@ Deno KVを使用したスマートキーのデモ
 
 - ブラウザのLocalStorageにユーザーIDを、サーバーのデータベース(Deno
   KV)にユーザーIDのSHA-256ハッシュ値を保存する。
-- 鍵を操作するときは、ブラウザのLocalStorageにある値をサーバーに送信し、ハッシュ値が登録済みのものであれば解錠/施錠ができる。
+- 鍵を操作するときは、ブラウザのLocalStorageにある値をサーバーに送信し、そのハッシュ値が登録済みのものであれば解錠/施錠ができる。
 - ユーザーIDに紐づく値としてユーザー名を設定できる。
 - アクセストークンを知っている者のみユーザー登録ページにアクセスでき、ユーザー登録が可能となる。
 
@@ -46,7 +46,7 @@ Deno KVを使用したスマートキーのデモ
   - request body: `{ userId: "＜ユーザーID＞", name: "＜新しいユーザー名＞" }`
   - response body: `{ success: true|false }`
   - 登録されたユーザーIDを持っている人だけがユーザー名を変更できる。
-- ユーザー名取得: GET `/api/set_name`
+- ユーザー名取得: GET `/api/get_name`
   - request query parameter: `?userId=＜ユーザーID＞`
   - response body: `{ success: true|false, name: "＜ユーザー名＞"|null }`
   - 登録されたユーザーIDを持っている人だけがユーザー名を取得できる。
