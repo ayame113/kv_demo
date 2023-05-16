@@ -128,10 +128,10 @@ export default function Main() {
     "block px-1 py-12 rounded grow flex justify-center items-center text-xl text-white font-bold";
 
   return (
-    <div class="w-full h-[100svh] max-w-lg mx-auto p-4 flex flex-col items-center justify-center gap-4 [&>*]:w-full">
+    <div class="grow w-full h-full max-w-lg mx-auto p-4 flex flex-col items-center justify-center gap-4 [&>*]:w-full">
       <div>
         <div
-          class={`h-36 w-36 py-3 m-auto rounded-[50%] flex flex-col gap-2 transition-colors ${
+          class={`h-36 w-36 py-3 m-auto rounded-[50%] flex flex-col gap-2 transition-colors duration-500 ${
             isLocked === true
               ? "bg-rose-100"
               : isLocked === false
@@ -141,17 +141,21 @@ export default function Main() {
         >
           <div class="text-sm text-center">現在の状態</div>
           {isLocked === true
-            ? <IconLock class="w-full h-full mx-auto grow" />
+            ? <IconLock class="w-full h-full mx-auto grow text-neutral-700" />
             : isLocked === false
-            ? <IconLockOpen class="w-full h-full mx-auto grow" />
-            : <IconQuestionMark class="w-full h-full mx-auto grow" />}
+            ? (
+              <IconLockOpen class="w-full h-full mx-auto grow text-neutral-700" />
+            )
+            : (
+              <IconQuestionMark class="w-full h-full mx-auto grow text-neutral-700" />
+            )}
           <div class="text-sm text-center">
             {isLocked === true ? "施錠" : isLocked === false ? "解錠" : "不明"}
           </div>
         </div>
       </div>
       <div
-        class={`transition-opacity p-1 border-2 border-sky-600 rounded bg-sky-50 text-sky-500 text-lg text-center ${
+        class={`transition-opacity duration-200 p-1 border-2 border-sky-600 rounded bg-sky-50 text-sky-500 text-lg text-center ${
           message ? "opacity-1" : "opacity-0"
         }`}
       >

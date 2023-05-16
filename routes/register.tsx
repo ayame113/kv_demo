@@ -1,4 +1,5 @@
 import { Head } from "$fresh/runtime.ts";
+import { Footer } from "../components/Footer.tsx";
 import Register from "../islands/Register.tsx";
 
 const ACCESS_TOKEN = Deno.env.get("ACCESS_TOKEN");
@@ -27,9 +28,12 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>KV DEMO</title>
+        <title>ユーザー登録</title>
       </Head>
-      <Register token={ACCESS_TOKEN} />
+      <main class="flex flex-col min-h-screen bg-sky-100 text-slate-900">
+        <Register token={ACCESS_TOKEN} />
+        <Footer />
+      </main>
     </>
   );
 }

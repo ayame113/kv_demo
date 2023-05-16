@@ -1,76 +1,109 @@
 import { useEffect, useState } from "preact/hooks";
+import { IS_BROWSER } from "$fresh/runtime.ts";
 
-import { deleteUser, register } from "../utils/api.ts";
+import { deleteUser, getName, register } from "../utils/api.ts";
+
+const userId = IS_BROWSER ? localStorage.getItem("user_id") : null;
 
 interface RegisterProps {
   token: string;
 }
 
 export default function Register(props: RegisterProps) {
-  const [success, setSuccess] = useState<boolean | null>(null);
-  const [previousUserId, setPreviousUserId] = useState<string | null>(null);
-  const [deleteSuccess, setDeleteSuccess] = useState<boolean | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isRegistered, setIsRegistered] = useState<boolean>(false);
+  const [hasRegistered, setHasRegistered] = useState<boolean | null>(null);
 
   useEffect(() => {
-    const initUserId = localStorage.getItem("user_id");
-
-    if (initUserId) {
-      setPreviousUserId(initUserId);
+    if (!userId) {
+      setHasRegistered(false);
+      doRegister();
       return;
     }
 
-    doRegister();
+    getName(userId).then((res) => {
+      if (typeof res.name === "string") {
+        setHasRegistered(true);
+      } else {
+        setHasRegistered(false);
+        doRegister();
+      }
+    }).catch((error) => {
+      console.error(error);
+      setErrorMessage("ユーザー情報取得に失敗しました。");
+    });
   }, []);
 
   async function doRegister() {
     console.log("doRegister");
-    const token = props.token;
 
-    const res = await register(token);
-    if (res.success && res.userId) {
-      localStorage.setItem("user_id", res.userId);
-      setSuccess(true);
-      setTimeout(() => {
-        location.href = "/";
-      }, 3000);
-    } else {
-      setSuccess(false);
+    try {
+      const res = await register(props.token);
+      if (res.success && res.userId) {
+        localStorage.setItem("user_id", res.userId);
+        setIsRegistered(true);
+        setTimeout(() => {
+          location.href = "/";
+        }, 3000);
+      } else {
+        setIsRegistered(false);
+      }
+    } catch (error) {
+      console.error(error);
+      setIsRegistered(false);
     }
   }
 
-  async function doDeleteUser() {
-    if (!previousUserId) {
+  async function doDeleteAndRegisterUser() {
+    if (!userId) {
       return;
     }
 
-    const res = await deleteUser(previousUserId, props.token);
-    setDeleteSuccess(res.success);
-    if (res.success) {
-      doRegister();
+    try {
+      const res = await deleteUser(userId, props.token);
+      if (res.success) {
+        doRegister();
+      } else {
+        setErrorMessage("ユーザー削除に失敗しました。");
+      }
+    } catch (error) {
+      console.error(error);
+      setErrorMessage("ユーザー削除に失敗しました。");
     }
   }
 
   return (
-    <div>
-      {success === true
-        ? "ユーザー登録が完了しました。3秒後にトップページに移動します。"
-        : success === false
-        ? "ユーザー登録が失敗しました。"
-        : deleteSuccess === false
-        ? "ユーザー削除に失敗しました。"
-        : previousUserId !== null
-        ? (
-          <>
-            既にユーザー登録されています。削除して新しいユーザーを登録しますか？
-            <button
-              class="p-1 m-2 bg-gray-200"
-              onClick={doDeleteUser}
-            >
-              削除
-            </button>
-          </>
-        )
-        : "ユーザー登録中..."}
+    <div class="grow flex flex-col items-center justify-center">
+      <div class="text-right">
+        {errorMessage
+          ? (
+            <div class="text-red-700 text-center">
+              {errorMessage}
+            </div>
+          )
+          : isRegistered
+          ? "ユーザー登録が完了しました。3秒後にトップページに移動します。"
+          : hasRegistered
+          ? (
+            <>
+              既にユーザー登録されています。<br />
+              <button
+                class="inline-block p-1 mt-4 rounded text-white bg-rose-500 hover:bg-rose-400"
+                onClick={doDeleteAndRegisterUser}
+              >
+                削除して新しいユーザーを登録
+              </button>
+              <br />
+              <a
+                href="/"
+                class="inline-block p-1 mt-4 rounded text-white bg-lime-600 hover:bg-lime-500"
+              >
+                ホームに戻る
+              </a>
+            </>
+          )
+          : "ユーザー登録中..."}
+      </div>
     </div>
   );
 }

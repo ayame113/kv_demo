@@ -3,45 +3,45 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 import config from "./deno.json" assert { type: "json" };
-import * as $0 from "./routes/api/close.ts";
-import * as $1 from "./routes/api/delete.ts";
-import * as $2 from "./routes/api/get_name.ts";
-import * as $3 from "./routes/api/joke.ts";
-import * as $4 from "./routes/api/open.ts";
-import * as $5 from "./routes/api/register.ts";
-import * as $6 from "./routes/api/set_name.ts";
-import * as $7 from "./routes/api/status.ts";
-import * as $8 from "./routes/close.tsx";
-import * as $9 from "./routes/index.tsx";
-import * as $10 from "./routes/open.tsx";
-import * as $11 from "./routes/register.tsx";
+import * as $0 from "./routes/_app.tsx";
+import * as $1 from "./routes/api/close.ts";
+import * as $2 from "./routes/api/delete.ts";
+import * as $3 from "./routes/api/get_name.ts";
+import * as $4 from "./routes/api/joke.ts";
+import * as $5 from "./routes/api/open.ts";
+import * as $6 from "./routes/api/register.ts";
+import * as $7 from "./routes/api/set_name.ts";
+import * as $8 from "./routes/api/status.ts";
+import * as $9 from "./routes/close.tsx";
+import * as $10 from "./routes/index.tsx";
+import * as $11 from "./routes/open.tsx";
+import * as $12 from "./routes/register.tsx";
 import * as $$0 from "./islands/Close.tsx";
-import * as $$1 from "./islands/Counter.tsx";
-import * as $$2 from "./islands/Main.tsx";
-import * as $$3 from "./islands/Open.tsx";
-import * as $$4 from "./islands/Register.tsx";
+import * as $$1 from "./islands/Main.tsx";
+import * as $$2 from "./islands/Open.tsx";
+import * as $$3 from "./islands/Register.tsx";
 
 const manifest = {
   routes: {
-    "./routes/api/close.ts": $0,
-    "./routes/api/delete.ts": $1,
-    "./routes/api/get_name.ts": $2,
-    "./routes/api/joke.ts": $3,
-    "./routes/api/open.ts": $4,
-    "./routes/api/register.ts": $5,
-    "./routes/api/set_name.ts": $6,
-    "./routes/api/status.ts": $7,
-    "./routes/close.tsx": $8,
-    "./routes/index.tsx": $9,
-    "./routes/open.tsx": $10,
-    "./routes/register.tsx": $11,
+    "./routes/_app.tsx": $0,
+    "./routes/api/close.ts": $1,
+    "./routes/api/delete.ts": $2,
+    "./routes/api/get_name.ts": $3,
+    "./routes/api/joke.ts": $4,
+    "./routes/api/open.ts": $5,
+    "./routes/api/register.ts": $6,
+    "./routes/api/set_name.ts": $7,
+    "./routes/api/status.ts": $8,
+    "./routes/close.tsx": $9,
+    "./routes/index.tsx": $10,
+    "./routes/open.tsx": $11,
+    "./routes/register.tsx": $12,
   },
   islands: {
     "./islands/Close.tsx": $$0,
-    "./islands/Counter.tsx": $$1,
-    "./islands/Main.tsx": $$2,
-    "./islands/Open.tsx": $$3,
-    "./islands/Register.tsx": $$4,
+    "./islands/Main.tsx": $$1,
+    "./islands/Open.tsx": $$2,
+    "./islands/Register.tsx": $$3,
   },
   baseUrl: import.meta.url,
   config,
