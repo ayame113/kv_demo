@@ -57,6 +57,17 @@ Deno KVを使用したスマートキーのデモ
   - response body: `{ success: true|false, locked: true|false|null }`
   - 登録されたユーザーIDを持っている人だけが鍵の状態を取得できる。lockedがtrueのとき施錠、falseのとき解錠、nullのとき不明。
 
+### 使用技術
+
+- [Deno](https://deno.land/)
+- [deno deploy](https://deno.com/deploy)
+- [Deno KV](https://deno.com/kv)
+- [Fresh](https://fresh.deno.dev/)
+- [Preact](https://preactjs.com/)
+- [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API)
+- [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API)
+- [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API)
+
 ### Usage
 
 Start the project:
