@@ -49,9 +49,13 @@ Deno KVを使用したスマートキーのデモ
   - response body: `{ success: true|false }`
   - 登録されたユーザーIDを持っている人だけがユーザー名を変更できる。
 - ユーザー名取得: GET `/api/get_name`
-  - request query parameter: `?userId=＜ユーザーID＞`
+  - request header: `User-Id: ＜ユーザーID＞`
   - response body: `{ success: true|false, name: "＜ユーザー名＞"|null }`
   - 登録されたユーザーIDを持っている人だけがユーザー名を取得できる。
+- 鍵の状態を取得: GET `/api/get_name`
+  - request header: `User-Id: ＜ユーザーID＞`
+  - response body: `{ success: true|false, locked: true|false|null }`
+  - 登録されたユーザーIDを持っている人だけが鍵の状態を取得できる。lockedがtrueのとき施錠、falseのとき解錠、nullのとき不明。
 
 ### Usage
 
