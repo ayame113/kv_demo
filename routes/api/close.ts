@@ -19,6 +19,8 @@ export const handler: Handlers = {
     }
 
     // TODO: 施錠処理
+    // @ts-ignore: __LOCKED__
+    globalThis.__LOCKED__ = true;
     console.log(await getUserName(userId), "さんが施錠しました");
     const res: ApiResponse = { success: true };
     return Response.json(res);

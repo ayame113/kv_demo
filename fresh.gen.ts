@@ -10,10 +10,11 @@ import * as $3 from "./routes/api/joke.ts";
 import * as $4 from "./routes/api/open.ts";
 import * as $5 from "./routes/api/register.ts";
 import * as $6 from "./routes/api/set_name.ts";
-import * as $7 from "./routes/close.tsx";
-import * as $8 from "./routes/index.tsx";
-import * as $9 from "./routes/open.tsx";
-import * as $10 from "./routes/register.tsx";
+import * as $7 from "./routes/api/status.ts";
+import * as $8 from "./routes/close.tsx";
+import * as $9 from "./routes/index.tsx";
+import * as $10 from "./routes/open.tsx";
+import * as $11 from "./routes/register.tsx";
 import * as $$0 from "./islands/Close.tsx";
 import * as $$1 from "./islands/Counter.tsx";
 import * as $$2 from "./islands/Main.tsx";
@@ -29,10 +30,11 @@ const manifest = {
     "./routes/api/open.ts": $4,
     "./routes/api/register.ts": $5,
     "./routes/api/set_name.ts": $6,
-    "./routes/close.tsx": $7,
-    "./routes/index.tsx": $8,
-    "./routes/open.tsx": $9,
-    "./routes/register.tsx": $10,
+    "./routes/api/status.ts": $7,
+    "./routes/close.tsx": $8,
+    "./routes/index.tsx": $9,
+    "./routes/open.tsx": $10,
+    "./routes/register.tsx": $11,
   },
   islands: {
     "./islands/Close.tsx": $$0,

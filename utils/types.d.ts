@@ -10,6 +10,10 @@ export interface GetNameApiResponse extends ApiResponse {
   name: string | null;
 }
 
+export interface StatusApiResponse extends ApiResponse {
+  locked: boolean | null;
+}
+
 export interface RegisterApiRequest {
   token: string;
 }

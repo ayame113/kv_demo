@@ -3,8 +3,8 @@ import { Handlers } from "$fresh/server.ts";
 import { createCommonResponse } from "https://deno.land/std@0.187.0/http/util.ts";
 import { Status } from "https://deno.land/std@0.187.0/http/http_status.ts";
 
-import { getUserName } from "../../utils/kv.ts";
-import { GetNameApiResponse } from "../../utils/types.d.ts";
+import { hasUser } from "../../utils/kv.ts";
+import { StatusApiResponse } from "../../utils/types.d.ts";
 
 export const handler: Handlers = {
   async GET(req) {
@@ -14,8 +14,16 @@ export const handler: Handlers = {
       return createCommonResponse(Status.Forbidden);
     }
 
-    const name = await getUserName(userId);
-    const res: GetNameApiResponse = { success: true, name };
+    if (!await hasUser(userId)) {
+      return createCommonResponse(Status.Forbidden);
+    }
+
+    // TODO: ステータス取得処理
+    const res: StatusApiResponse = {
+      success: true,
+      // @ts-ignore: __LOCKED__
+      locked: globalThis.__LOCKED__ ?? null,
+    };
     return Response.json(res);
   },
 };

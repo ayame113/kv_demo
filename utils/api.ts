@@ -5,6 +5,7 @@ import {
   RegisterApiRequest,
   RegisterApiResponse,
   SetNameApiRequest,
+  StatusApiResponse,
 } from "./types.d.ts";
 
 export async function register(token: string): Promise<RegisterApiResponse> {
@@ -56,10 +57,16 @@ export async function close(userId: string): Promise<ApiResponse> {
   return await res.json();
 }
 
+export async function status(userId: string): Promise<StatusApiResponse> {
+  const res = await fetch("/api/status", { headers: { "User-Id": userId } });
+  if (!res.ok) {
+    return { success: false, locked: null };
+  }
+  return await res.json();
+}
+
 export async function getName(userId: string): Promise<GetNameApiResponse> {
-  const url = new URL("/api/get_name", location.href);
-  url.searchParams.set("user_id", userId);
-  const res = await fetch(url);
+  const res = await fetch("/api/get_name", { headers: { "User-Id": userId } });
   if (!res.ok) {
     return { success: false, name: "" };
   }
