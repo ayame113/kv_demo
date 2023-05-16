@@ -1,5 +1,5 @@
 import type { JSX } from "preact";
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 
 import IconLock from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/lock.tsx";
@@ -16,6 +16,7 @@ export default function Main() {
   const [message, setMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isLocked, setIsLocked] = useState<boolean | null>(null);
+  const animationRef = useRef<HTMLDivElement>(null);
 
   // 初期化時に実行
   useEffect(() => {
@@ -76,6 +77,10 @@ export default function Main() {
       if (res.success) {
         setIsLocked(false);
         setMessage("解錠しました");
+        animationRef.current?.animate(
+          [{ transform: "rotate(360deg)" }, { transform: "rotate(0deg)" }],
+          { duration: 500, easing: "ease-in-out" },
+        );
       } else {
         setMessage(null);
         setErrorMessage("解錠に失敗しました");
@@ -96,6 +101,10 @@ export default function Main() {
       if (res.success) {
         setIsLocked(true);
         setMessage("施錠しました");
+        animationRef.current?.animate(
+          [{ transform: "rotate(0deg)" }, { transform: "rotate(360deg)" }],
+          { duration: 500, easing: "ease-in-out" },
+        );
       } else {
         setMessage(null);
         setErrorMessage("施錠に失敗しました");
@@ -131,6 +140,7 @@ export default function Main() {
     <div class="grow w-full h-full max-w-lg mx-auto p-4 flex flex-col items-center justify-center gap-4 [&>*]:w-full">
       <div>
         <div
+          ref={animationRef}
           class={`h-36 w-36 py-3 m-auto rounded-[50%] flex flex-col gap-2 transition-colors duration-500 ${
             isLocked === true
               ? "bg-rose-100"
