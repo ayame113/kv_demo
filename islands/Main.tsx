@@ -191,7 +191,7 @@ export default function Main() {
       </label>
       <div class="flex justify-center gap-4">
         <button
-          class={`${buttonClass} bg-lime-600 enabled:hover:bg-lime-500`}
+          class={`${buttonClass} bg-lime-600 [@media(any-hover:hover)]:enabled:hover:bg-lime-500 [@media(any-hover:none)]:enabled:active:bg-lime-500`}
           onClick={onOpen}
           disabled={!IS_BROWSER || isLoading || errorMessage !== null}
         >
@@ -199,7 +199,7 @@ export default function Main() {
           <span>解錠</span>
         </button>
         <button
-          class={`${buttonClass} bg-rose-500 enabled:hover:bg-rose-400`}
+          class={`${buttonClass} bg-rose-500 [@media(any-hover:hover)]:enabled:hover:bg-rose-400 [@media(any-hover:none)]:enabled:active:bg-rose-400`}
           onClick={onClose}
           disabled={!IS_BROWSER || isLoading || errorMessage !== null}
         >
