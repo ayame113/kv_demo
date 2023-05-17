@@ -16,6 +16,7 @@ export default function Main() {
   const [message, setMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isLocked, setIsLocked] = useState<boolean | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const animationRef = useRef<HTMLDivElement>(null);
 
   // 初期化時に実行
@@ -72,11 +73,13 @@ export default function Main() {
       return;
     }
     setMessage("解錠中...");
+    setIsLoading(true);
     try {
       const res = await open(userId);
       if (res.success) {
         setIsLocked(false);
         setMessage("解錠しました");
+        setIsLoading(false);
         animationRef.current?.animate(
           [{ transform: "rotate(360deg)" }, { transform: "rotate(0deg)" }],
           { duration: 500, easing: "ease-in-out" },
@@ -96,11 +99,13 @@ export default function Main() {
       return;
     }
     setMessage("施錠中...");
+    setIsLoading(true);
     try {
       const res = await close(userId);
       if (res.success) {
         setIsLocked(true);
         setMessage("施錠しました");
+        setIsLoading(false);
         animationRef.current?.animate(
           [{ transform: "rotate(0deg)" }, { transform: "rotate(360deg)" }],
           { duration: 500, easing: "ease-in-out" },
@@ -188,7 +193,7 @@ export default function Main() {
         <button
           class={`${buttonClass} bg-lime-600 hover:bg-lime-500`}
           onClick={onOpen}
-          disabled={errorMessage !== null}
+          disabled={!IS_BROWSER || isLoading || errorMessage !== null}
         >
           <IconLockOpen class="w-5 h-5" />
           <span>解錠</span>
@@ -196,7 +201,7 @@ export default function Main() {
         <button
           class={`${buttonClass} bg-rose-500 hover:bg-rose-400`}
           onClick={onClose}
-          disabled={errorMessage !== null}
+          disabled={!IS_BROWSER || isLoading || errorMessage !== null}
         >
           <IconLock class="w-5 h-5" />
           施錠
