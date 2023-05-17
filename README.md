@@ -2,7 +2,7 @@
 
 Deno KVを使用したスマートキーのデモ
 
-![image](https://github.com/ayame113/kv_demo/assets/40050810/91f25236-2a5b-4402-8591-3ebe6ebe7f1b)
+![image](https://github.com/ayame113/smart_lock_demo/assets/40050810/9b4d30ef-7018-49d4-aff9-9eb473d30b1d)
 
 ### アイディア
 
